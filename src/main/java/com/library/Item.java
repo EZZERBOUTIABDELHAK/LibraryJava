@@ -1,5 +1,7 @@
 package com.library;
 
+import java.util.Objects;
+
 /*
 -String id
 
@@ -21,12 +23,25 @@ package com.library;
 */
 
 public abstract class Item {
-    private String id ;
-    private String title;
+    private final String id ;
+    private final String title;
     private boolean available;
 
 
+     public Item(String id,String title){
+        Objects.requireNonNull(id,"the id cant be null");
+        Objects.requireNonNull(title,"the title cant be null");
+        if (id.isBlank()) {
+            throw new IllegalArgumentException("The id cannot be blank");
+        }
+        if (title.isBlank()) {
+            throw new IllegalArgumentException("The title cannot be blank");
+        }
 
+        this.id=id;
+        this.title=title;
+        this.available = true;
+     }
 
     public String getId() {
         return id;
@@ -38,16 +53,27 @@ public abstract class Item {
         return available;
     }
 
+    //check if u can borrowed
+    public boolean canBeBorrowed(){
+        return isAvailable();
+    }
+
+    //borrowed the item
     public void markBorrowed(){
-
+        if(!isAvailable()){
+            throw new IllegalStateException("already borrowed");
+        }
+        this.available=false;
     }
+
+    //return the item 
     public void markReturned(){
-        
-    }
-    public int loanPeriodDays(){
-        return 0;
+        if(isAvailable()){
+            throw new IllegalStateException("was not borrowed");
+        }
+        this.available=true;
     }
 
-    
+    public abstract int loanPeriodDays();
     
 }
