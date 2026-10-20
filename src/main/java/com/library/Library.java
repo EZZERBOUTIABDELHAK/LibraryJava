@@ -2,6 +2,7 @@ package com.library;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /*
 -List<Item> items
@@ -141,17 +142,9 @@ public class Library {
         loan.item().markReturned();
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public List<Loan> getActiveLoans() {
-        return activeLoans;
-    }
+    public List<Item> getItems() { return Collections.unmodifiableList(items); }
+    public List<Member> getMembers() { return Collections.unmodifiableList(members); }
+    public List<Loan> getActiveLoans() { return Collections.unmodifiableList(activeLoans); }
 
     
 }

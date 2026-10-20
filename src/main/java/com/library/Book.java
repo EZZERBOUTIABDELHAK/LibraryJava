@@ -17,7 +17,7 @@ public class Book extends Item{
     public Book(String id, String title ,String author, ISBN isbn) {
         super(id, title);
 
-        Objects.requireNonNull(author,"the id cant be null");
+        Objects.requireNonNull(author,"the author cant be null");
         if (author.isBlank()) {
             throw new IllegalArgumentException("The author cannot be blank");
         }

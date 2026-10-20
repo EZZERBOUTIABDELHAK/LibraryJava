@@ -6,7 +6,7 @@ import java.util.Objects;
 //which member borrowed which item , when,and when it is due
 public record Loan(Item item ,Member member,LocalDate borrowedOn,LocalDate dueDate) {
     public Loan{
-        Objects.requireNonNull(item, "the ISBN cant be null");
+        Objects.requireNonNull(item, "the item cant be null");
         Objects.requireNonNull(member, "the member cant be null");
         Objects.requireNonNull(borrowedOn, "the borrowedOn cant be null");
         Objects.requireNonNull(dueDate, "the dueDate cant be null");
